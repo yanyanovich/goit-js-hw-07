@@ -22,15 +22,12 @@ galleryEl.addEventListener("click", (e) => {
   <img width="100%" height="100%" src="${e.target.dataset.source}">
 `,
     {
-      onShow: () =>
-        document.addEventListener("keydown", (e) => {
-          if (e.code === "Escape") instance.close();
-        }),
-      onClose: () =>
-        document.removeEventListener("keydown", (e) => {
-          if (e.code === "Escape") instance.close();
-        }),
+      onShow: () => document.addEventListener("keydown", handleKeydown),
+      onClose: () => document.removeEventListener("keydown", handleKeydown),
     }
   );
   instance.show();
+  function handleKeydown(e) {
+    if (e.code === "Escape") instance.close();
+  }
 });
